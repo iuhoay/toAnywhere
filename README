@@ -6,7 +6,3 @@ jQuery 插件
   基本功能完成
   
   加入时间参数的设置
-
-
-
-java -jar yuicompressor.jar jquery-toanywhere.js -o jquery-toanywhere.min.js --charset utf-8
