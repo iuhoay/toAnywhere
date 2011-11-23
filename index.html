@@ -4,7 +4,7 @@
 		<script src="jquery-toanywhere.js"></script>
 		<script>
 			$(function() {
-				$("a").toAnywhere();
+				$("#toTitle,#toContent").toAnywhere("fast");
 			});
 		</script>
 	</head>
@@ -13,6 +13,7 @@
 		<div id="content" style="height:2200px;border:1px solid black;">
 			<h1>Hello World</h1>
 		</div>
-		<a href="#title" >to Title!</a> | <a href="#content" >to Content</a>
+		<a id="toTitle" href="#title" >to Title!</a> | 
+		<a id="toContent" href="#content" duration="1000">to Content</a>
 	</body>
 </html>
