@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<script src="../jquery-1.4.2.js"></script>
+		<script src="jquery-toanywhere.js"></script>
+		<script>
+			/*
+			$.fn.toAnywhere = function() {
+				$(this).click(function() {
+					$("html, body").animate({
+						scrollTop: $($(this).attr("href")).offset().top + "px"
+					}, {
+						duration: 100,
+						easing: "swing"
+					});
+					return false;
+				});
+			}
+			*/
+			$(function() {
+				$("a").toAnywhere();
+			});
+		</script>
+	</head>
+	<body>
+		<h1 id="title">Title</h1>
+		<div id="content" style="height:2200px;border:1px solid black;">
+			<h1>Hello World</h1>
+		</div>
+		<a href="#title" >to Title!</a><a href="#content" >to Content</a>
+	</body>
+</html>
