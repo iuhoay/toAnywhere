@@ -11,4 +11,4 @@ jQuery 插件
   加入时间参数的设置
 
 
-[toAnywhere]:[http://charsky.github.com/toAnywhere]
+[toAnywhere]: http://charsky.github.com/toAnywhere
