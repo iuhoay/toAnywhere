@@ -9,7 +9,7 @@
  * 
  *
  * @author wuyaohui
- * https://github.com/wuyaohui/toAnywhere
+ * https://charsky.github.com/toAnywhere
  * email: charsky.wu@gmail.com
  * 2011/11/23 
  */
