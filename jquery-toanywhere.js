@@ -13,10 +13,9 @@
 	$.fn.toAnywhere = function(duration) {
 		$(this).click(function() {
 			var $this = $(this);
-			var self_duration = parseInt($this.attr("duration"));
 			$("body, html").animate({
 				scrollTop: $($this.attr("href")).offset().top + "px"
-			}, self_duration || duration);
+			}, parseInt($this.attr("duration")) || duration);
 			return false;
 		});
 	}
