@@ -16,8 +16,8 @@
 (function($) {
   $.fn.toAnywhere = function(duration) {
     $(this).each(function() {
-      var $el = $(this);
-      var any = _anyWhere.getAnyWhere($el);
+      console.info(this.id);
+      var any = new _anyWhere(this).getAnyWhere();
       $(this).click(function() {
 	var $this = $(this);
 	$("body, html").animate({
@@ -27,37 +27,17 @@
       });
     });
   }
-  var _anyWhere = {
-    $el: null,
-    el: null,
-    local: null,
-    getAnyWhere: function(el) {
-      this.el = el,
-      this.$el = $(this.el);
-      this.local = this.$el.attr("any_local");
-      this.setLocal();
+  function _anyWhere(el) {
+    this.el = el;
+    this.$el = $(el);
+  }
+  _anyWhere.prototype = {
+    getAnyWhere: function() {
       this.setWindowScroll();
-      return this;
-    },
-    setLocal: function() {
-      if (this.local) {
-	var _local_array = this.local.split("|");
-	for (i in _local_array) {
-	  switch(_local_array[i]) {
-	    case "bottom":
-	      this.$el.addClass("up_any_bottom");
-	      break;
-	    case "right":
-	      this.$el.addClass("up_any_right");
-	      break;
-	  }
-	}
-	return _local_array;
-      }
     },
     setWindowScroll: function() {
       var any = this;
-      window.onscroll = function() {
+      $(window).bind("scroll", function() {
 	var scrollTop;
 	if (document.documentElement && document.documentElement.scrollTop) {
 	  scrollTop = document.documentElement.scrollTop;
@@ -65,11 +45,11 @@
 	  scrollTop = document.body.scrollTop;
 	}
 	any._setElToggle(scrollTop);
-      }
+      });
     },
     _setElToggle: function(scrollTop) {
-      if (scrollTop > 200) this.$el.addClass("up_any_show");
-      else this.$el.removeClass("up_any_show");
+      if (scrollTop > 200) this.$el.fadeIn("fast");
+      else this.$el.hide();
     }
   }
 })(jQuery);
