@@ -5,16 +5,16 @@
     <link rel="stylesheet" href="css.css" type="text/css" media="screen" />
   </head>
   <body>
-    <div class="tip">暂不支持IE6</div>
+    <div class="tip">NO IE6</div>
     <div id="content">
       向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下
     </div>
     <a href="body" id="up_any" class="up_any">up</a>
-    <a href="body" class="up_any custom_bottom_middle">up</a>
+    <a href="body" duration="2000" class="up_any custom_bottom_middle">up</a>
     <script src="../jquery-1.7.1.min.js"></script>
     <script src="jquery-toanywhere-v2.js" type="text/javascript"></script>
     <script>
-      $(".up_any").toAnywhere();
+      $(".up_any").toAnywhere(500);
     </script>
   </body>
 </html>

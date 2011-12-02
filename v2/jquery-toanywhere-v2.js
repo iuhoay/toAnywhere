@@ -12,30 +12,39 @@
  *  v2 版
  *  增加定位元素 bottom | right
  *  bug: IE6 定位问题
+ *  v2.1
+ *  去掉元素定位 可通过css 修改
+ *  决定不支持 IE6 如果是 IE6 不执行
  */
 (function($) {
   $.fn.toAnywhere = function(duration) {
+    // 不支持 IE 6
+    if(/MSIE 6/.test(navigator.userAgent)) return false;
     $(this).each(function() {
-      console.info(this.id);
-      var any = new _anyWhere(this).getAnyWhere();
-      $(this).click(function() {
-	var $this = $(this);
-	$("body, html").animate({
-	  scrollTop: $($this.attr("href")).offset().top + "px"
-	}, parseInt($this.attr("duration")) || duration);
-	return false;
-      });
+      new _anyWhere(this, duration).getAnyWhere();
     });
   }
-  function _anyWhere(el) {
+  function _anyWhere(el, duration) {
     this.el = el;
+    this.duration = duration || 1000;
     this.$el = $(el);
   }
   _anyWhere.prototype = {
     getAnyWhere: function() {
-      this.setWindowScroll();
+      this.bindWindowScroll();
+      this.bindClick();
     },
-    setWindowScroll: function() {
+    bindClick: function() {
+      var _duration = this.duration;
+      this.$el.click(function() {
+	var _el = $(this);
+	$("body, html").animate({
+	  scrollTop: $(_el.attr("href")).offset().top + "px"
+	}, parseInt(_el.attr("duration")) || _duration);
+	return false;
+      });
+    },
+    bindWindowScroll: function() {
       var any = this;
       $(window).bind("scroll", function() {
 	var scrollTop;

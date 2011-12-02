@@ -19,6 +19,7 @@ body {
 }
 
 .up_any {
+  color: blue;
   display: none;
   position: fixed;
   font-size: 30px;
