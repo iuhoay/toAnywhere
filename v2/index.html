@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset='utf-8' />
-    <link rel="stylesheet" href="css.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css.css" />
+    <link rel="stylesheet" href="../jquery-toanywhere.css" />
+
   </head>
   <body>
-    <div class="tip">NO IE6</div>
-    <div id="content">
-      向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下向下
+    <div id="head">Head</div>
+    <div id="content">Hello World</div>
+    <div id="footer">
+      foot
     </div>
-    <a href="body" id="up_any" class="up_any">up</a>
-    <a href="body" duration="2000" class="up_any custom_bottom_middle">up</a>
-    <script src="../jquery-1.7.1.min.js"></script>
-    <script src="jquery-toanywhere-v2.js" type="text/javascript"></script>
+    <a class="up_any custom_any" href="body">up</a>
+    <script src="../../jquery-1.7.1.min.js"></script>
+    <script src="../jquery-toanywhere-v2.js"></script>
     <script>
-      $(".up_any").toAnywhere(500);
+      $(".up_any").toAnywhere();
     </script>
   </body>
 </html>

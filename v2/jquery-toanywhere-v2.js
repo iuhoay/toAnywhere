@@ -19,7 +19,6 @@
 (function($) {
   $.fn.toAnywhere = function(duration) {
     // 不支持 IE 6
-    if(/MSIE 6/.test(navigator.userAgent)) return false;
     $(this).each(function() {
       new _anyWhere(this, duration).getAnyWhere();
     });
@@ -30,7 +29,18 @@
     this.$el = $(el);
   }
   _anyWhere.prototype = {
+    build: function() {
+      if (/MSIE 6/.test(navigator.userAgent)) {
+	this.$el.css("display", "none");
+      } else {
+	this.$el.css({
+	  position: "fixed",
+	  display: "none"
+	});
+      }
+    },
     getAnyWhere: function() {
+      this.build();
       this.bindWindowScroll();
       this.bindClick();
     },
@@ -57,7 +67,7 @@
       });
     },
     _setElToggle: function(scrollTop) {
-      if (scrollTop > 200) this.$el.fadeIn("fast");
+      if (scrollTop > 0) this.$el.fadeIn("fast");
       else this.$el.hide();
     }
   }
