@@ -5,11 +5,12 @@ html body {
   _background-image: url(about:blank);
   _background-attachment:fixed;
 }
-.up_any {
+.to_any {
   _position:absolute;
   _top:expression(eval(
     document.documentElement.scrollTop + 
     document.documentElement.clientHeight - 
-    (parseInt(this.currentStyle.bottom, 10) || 0)
+    (parseInt(this.currentStyle.bottom, 10) || 0) - 
+    (parseInt(this.currentStyle.height, 10) || 0)
   ));
 }

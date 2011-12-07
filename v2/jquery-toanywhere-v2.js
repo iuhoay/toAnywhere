@@ -1,8 +1,16 @@
 /**
  * 平滑滚动页面到某元素
- * <a href="body" id="toBody" duration="slow">to Top</a>
- * $("#toBody").toAnywhere(int duration);
- * 
+ *
+ *
+ * href: 
+ *
+ * Example 1
+ * <a href="body" class="to_any">to Top</a>
+ * $(".to_any").toAnywhere(int duration); // duration > 0
+ * Example 2
+ * <a href="body" class="to_any" duration="500">to Top</a>
+ * $(".to_any").toAnywhere();
+ *
  *
  * @author wuyaohui
  * https://charsky.github.com/toAnywhere
@@ -15,29 +23,26 @@
  *  v2.1
  *  去掉元素定位 可通过css 修改
  *  决定不支持 IE6 如果是 IE6 不执行
+ * 2011/12/6
+ *  解决IE6定位问题 见 jquery-toanywhere.css
  */
 (function($) {
   $.fn.toAnywhere = function(duration) {
-    // 不支持 IE 6
     $(this).each(function() {
       new _anyWhere(this, duration).getAnyWhere();
     });
   }
   function _anyWhere(el, duration) {
     this.el = el;
-    this.duration = duration || 1000;
+    this.duration = parseInt(duration) || 1000;
     this.$el = $(el);
   }
   _anyWhere.prototype = {
     build: function() {
-      if (/MSIE 6/.test(navigator.userAgent)) {
-	this.$el.css("display", "none");
-      } else {
-	this.$el.css({
-	  position: "fixed",
-	  display: "none"
-	});
-      }
+      if (!/MSIE 6/.test(navigator.userAgent)) {
+	this.$el.css("position", "fixed");
+      } 
+      this.$el.css("display", "none");
     },
     getAnyWhere: function() {
       this.build();
