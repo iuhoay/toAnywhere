@@ -28,7 +28,7 @@
  */
 (function($) {
   $.fn.toAnywhere = function(duration) {
-    $(this).each(function() {
+    return $(this).each(function() {
       new _anyWhere(this, duration).getAnyWhere();
     });
   }
