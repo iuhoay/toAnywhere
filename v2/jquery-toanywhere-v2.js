@@ -2,8 +2,6 @@
  * 平滑滚动页面到某元素
  *
  *
- * href: 
- *
  * Example 1
  * <a href="body" class="to_any">to Top</a>
  * $(".to_any").toAnywhere(int duration); // duration > 0
@@ -25,13 +23,24 @@
  *  决定不支持 IE6 如果是 IE6 不执行
  * 2011/12/6
  *  解决IE6定位问题 见 jquery-toanywhere.css
+ * 2011/12/13
+ *  修改jQuery 插件的实现
+ *  加入部分注释
+ *  调用后jQuery对象返回
  */
 (function($) {
-  $.fn.toAnywhere = function(duration) {
-    return $(this).each(function() {
-      new _anyWhere(this, duration).getAnyWhere();
-    });
-  }
+  $.fn.extend({
+    toAnywhere: function(duration) {
+      return $(this).each(function() {
+	new _anyWhere(this, duration).getAnyWhere();
+      });
+    }
+  });
+
+  /**
+   * el: 对应的dom对象
+   * duration: 执行时间 毫秒
+   */
   function _anyWhere(el, duration) {
     this.el = el;
     this.duration = parseInt(duration) || 1000;
@@ -39,6 +48,9 @@
   }
   _anyWhere.prototype = {
     build: function() {
+      /*
+       * IE 6 不支持 fixed 定位，通过css 来实现，见jquery-toanywhere.css
+       */
       if (!/MSIE 6/.test(navigator.userAgent)) {
 	this.$el.css("position", "fixed");
       } 
