@@ -32,7 +32,7 @@
   $.fn.extend({
     toAnywhere: function(duration) {
       return $(this).each(function() {
-	new _anyWhere(this, duration).getAnyWhere();
+        new _anyWhere(this, duration).getAnyWhere();
       });
     }
   });
@@ -52,7 +52,7 @@
        * IE 6 不支持 fixed 定位，通过css 来实现，见jquery-toanywhere.css
        */
       if (!/MSIE 6/.test(navigator.userAgent)) {
-	this.$el.css("position", "fixed");
+        this.$el.css("position", "fixed");
       } 
       this.$el.css("display", "none");
     },
@@ -64,23 +64,23 @@
     bindClick: function() {
       var _duration = this.duration;
       this.$el.click(function() {
-	var _el = $(this);
-	$("body, html").animate({
-	  scrollTop: $(_el.attr("href")).offset().top + "px"
-	}, parseInt(_el.attr("duration")) || _duration);
-	return false;
+        var _el = $(this);
+        $("body, html").animate({
+          scrollTop: $(_el.attr("href")).offset().top + "px"
+        }, parseInt(_el.attr("duration")) || _duration);
+        return false;
       });
     },
     bindWindowScroll: function() {
       var any = this;
       $(window).bind("scroll", function() {
-	var scrollTop;
-	if (document.documentElement && document.documentElement.scrollTop) {
-	  scrollTop = document.documentElement.scrollTop;
-	} else if (document.body && document.body.scrollTop) {
-	  scrollTop = document.body.scrollTop;
-	}
-	any._setElToggle(scrollTop);
+        var scrollTop;
+        if (document.documentElement && document.documentElement.scrollTop) {
+          scrollTop = document.documentElement.scrollTop;
+        } else if (document.body && document.body.scrollTop) {
+          scrollTop = document.body.scrollTop;
+        }
+        any._setElToggle(scrollTop);
       });
     },
     _setElToggle: function(scrollTop) {
