@@ -1,24 +1,21 @@
 body {
   margin: 0;
 }
-#head {
+#head, #content, #footer {
   width: 600px;
   margin: 0 auto;
-  height: 50px;
-  background: blue;
+}
+#head {
+  text-align: center;
 }
 #content {
-  width: 600px;
-  margin: 0 auto;
   height: 2000px;
-  background: red;
 }
 #footer {
-  width: 600px;
-  margin: 0 auto;
-  background: yellow;
-  height: 200px;
+  text-align: center;
+  margin-bottom: 100px;
 }
+
 
 .custom_any {
   background-color: #DCDBD0;
@@ -39,4 +36,11 @@ body {
   padding: 10px 3px;
   font-size: 14px;
   line-height: 14px;
+}
+
+.custom_any_img {
+  background: url("up.png") no-repeat;
+  margin-left: 350px;
+  width: 48px;
+  height: 48px;
 }

@@ -27,6 +27,8 @@
  *  修改jQuery 插件的实现
  *  加入部分注释
  *  调用后jQuery对象返回
+ * 2012/1/9
+ *  增加了 anytype 属性
  */
 (function($) {
   $.fn.extend({
@@ -45,6 +47,8 @@
     this.el = el;
     this.duration = parseInt(duration) || 1000;
     this.$el = $(el);
+    this.anyType = this.$el.attr("anytype");
+    this.$window = $(window);
   }
   _anyWhere.prototype = {
     build: function() {
@@ -57,8 +61,10 @@
       this.$el.css("display", "none");
     },
     getAnyWhere: function() {
-      this.build();
-      this.bindWindowScroll();
+      if (this.anyType != "link") {
+        this.build();
+        this.bindWindowScroll();
+      }
       this.bindClick();
     },
     bindClick: function() {
@@ -72,20 +78,10 @@
       });
     },
     bindWindowScroll: function() {
-      var any = this;
-      $(window).bind("scroll", function() {
-        var scrollTop;
-        if (document.documentElement && document.documentElement.scrollTop) {
-          scrollTop = document.documentElement.scrollTop;
-        } else if (document.body && document.body.scrollTop) {
-          scrollTop = document.body.scrollTop;
-        }
-        any._setElToggle(scrollTop);
+      var $el = this.$el;
+      this.$window.bind("scroll", function() {
+        $(this).scrollTop() > 0 ? $el.fadeIn("fast") : $el.hide();
       });
-    },
-    _setElToggle: function(scrollTop) {
-      if (scrollTop > 0) this.$el.fadeIn("fast");
-      else this.$el.hide();
     }
   }
 })(jQuery);

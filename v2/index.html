@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="css.css" />
-    <link rel="stylesheet" href="jquery-toanywhere.css" />
-  </head>
-  <body>
-    <div id="head">Head</div>
-    <div id="content">Hello World</div>
-    <div id="footer">
-      foot
-    </div>
-    <a class="to_any custom_any" href="body">
-      <span>返回顶部</span>
-    </a>
-    <a class="to_any custom_any custom_any_right" duration="100" href="#content">
-      <span>返回内容顶部</span>
-    </a>
-    <script src="../jquery-1.7.1.min.js"></script>
-    <script src="jquery-toanywhere-v2.js"></script>
-    <script>
-      $(".to_any").toAnywhere(500).css("color", "black");
-    </script>
-  </body>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="css.css" />
+<!--[if lt IE 7]>
+<link rel="stylesheet" href="jquery-toanywhere.css" />
+<![endif]-->
+</head>
+<body>
+<div id="head"><h1>toAnywhere Demo</h1></div>
+<div id="content">
+一直想把Demo给做好了，不知道怎么写，有兴趣的童鞋可以帮我写写<br>
+联系方式见 <a anytype="link" class="to_any_link" href="#footer">footer</a><br>
+具体代码见本页了，代码都看的见的
+</div>
+<div id="footer">© 2012 <a href="http://charsky.github.com" title="Chuck's blog">Chuck</a></div>
+<a class="to_any custom_any" href="body">
+  <span>返回顶部</span>
+</a>
+<a class="to_any custom_any custom_any_right" duration="100" href="#content">
+  <span>返回内容顶部</span>
+</a>
+<a class="to_any custom_any custom_any_img" href="body"></a>
+<script src="../jquery-1.7.1.min.js"></script>
+<script src="jquery-toanywhere-v2.js"></script>
+<script>
+  $(".to_any,.to_any_link")
+    .toAnywhere(500)
+    .css("color", "black")
+    .filter(".custom_any_img")
+    .css("opacity", 0.5)
+    .hover(function() {
+      $(this).css("opacity", 1);
+    }, function() {
+      $(this).css("opacity", 0.5);
+    });
+</script>
+</body>
 </html>
