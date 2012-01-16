@@ -13,22 +13,6 @@
  * @author wuyaohui
  * https://charsky.github.com/toAnywhere
  * email: charsky.wu@gmail.com
- * 2011/11/23
- * 2011/12/2
- *  v2 版
- *  增加定位元素 bottom | right
- *  bug: IE6 定位问题
- *  v2.1
- *  去掉元素定位 可通过css 修改
- *  决定不支持 IE6 如果是 IE6 不执行
- * 2011/12/6
- *  解决IE6定位问题 见 jquery-toanywhere.css
- * 2011/12/13
- *  修改jQuery 插件的实现
- *  加入部分注释
- *  调用后jQuery对象返回
- * 2012/1/9
- *  增加了 anytype 属性
  */
 (function($) {
   var Anywhere = {
