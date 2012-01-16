@@ -31,6 +31,13 @@
  *  增加了 anytype 属性
  */
 (function($) {
+  var Anywhere = {
+    DEF_DURATION : 1000,
+    ATTR_DURATION : "duration",
+    ATTR_ANYTYPE : "anytype",
+    $body_html : $("body, html"),
+    $window : $(window)
+  };
   $.fn.extend({
     toAnywhere: function(duration) {
       return $(this).each(function() {
@@ -45,10 +52,9 @@
    */
   function _anyWhere(el, duration) {
     this.el = el;
-    this.duration = parseInt(duration) || 1000;
     this.$el = $(el);
-    this.anyType = this.$el.attr("anytype");
-    this.$window = $(window);
+    this.duration = parseInt(duration) || Anywhere.DEF_DURATION;
+    this.anyType = this.$el.attr(Anywhere.ATTR_ANYTYPE);
   }
   _anyWhere.prototype = {
     build: function() {
@@ -68,19 +74,19 @@
       this.bindClick();
     },
     bindClick: function() {
-      var _duration = this.duration;
+      var duration = this.duration;
       this.$el.click(function() {
-        var _el = $(this);
-        $("body, html").animate({
-          scrollTop: $(_el.attr("href")).offset().top + "px"
-        }, parseInt(_el.attr("duration")) || _duration);
+        var $this = $(this);
+        Anywhere.$body_html.animate({
+          scrollTop: $($this.attr("href")).offset().top + "px"
+        }, parseInt($this.attr("duration")) || duration);
         return false;
       });
     },
     bindWindowScroll: function() {
-      var $el = this.$el;
-      this.$window.bind("scroll", function() {
-        $(this).scrollTop() > 0 ? $el.fadeIn("fast") : $el.hide();
+      var $this = this.$el;
+      Anywhere.$window.bind("scroll", function() {
+        $(this).scrollTop() > 0 ? $this.fadeIn("fast") : $this.hide();
       });
     }
   }
