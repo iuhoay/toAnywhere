@@ -10,17 +10,17 @@
  * $(".to_any").toAnywhere();
  *
  *
- * @author wuyaohui
- * https://charsky.github.com/toAnywhere
+ * @author Chuck Wu
+ * https://iuhoay.github.com/toAnywhere
  * email: charsky.wu@gmail.com
  */
-(function($) {
+(function($, win) {
   var Anywhere = {
     DEF_DURATION : 1000,
     ATTR_DURATION : "duration",
     ATTR_ANYTYPE : "anytype",
     $body_html : $("body, html"),
-    $window : $(window)
+    $window : $(win)
   };
   $.fn.extend({
     toAnywhere: function(duration) {
@@ -38,7 +38,7 @@
     this.el = el;
     this.$el = $(el);
     this.duration = parseInt(duration) || Anywhere.DEF_DURATION;
-    this.anyType = this.$el.attr(Anywhere.ATTR_ANYTYPE);
+    this.anyType = this.$el.prop(Anywhere.ATTR_ANYTYPE);
   }
   _anyWhere.prototype = {
     build: function() {
@@ -62,8 +62,8 @@
       this.$el.click(function() {
         var $this = $(this);
         Anywhere.$body_html.animate({
-          scrollTop: $($this.attr("href")).offset().top + "px"
-        }, parseInt($this.attr("duration")) || duration);
+          scrollTop: $($this.prop("href")).offset().top + "px"
+        }, parseInt($this.prop("duration")) || duration);
         return false;
       });
     },
@@ -74,4 +74,4 @@
       });
     }
   }
-})(jQuery);
+})(jQuery, window);
